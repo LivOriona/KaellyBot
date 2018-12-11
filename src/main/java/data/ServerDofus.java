@@ -75,4 +75,8 @@ public class ServerDofus {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

@@ -44,19 +44,17 @@ public class JobUser {
             if (level > 0) {
                 preparedStatement = connection.prepareStatement(
                         "UPDATE Job_User SET level = ?"
-                                + "WHERE name_job = ? AND id_user = ? AND id_guild = ?;");
+                                + "WHERE name_job = ? AND id_user = ?;");
                 preparedStatement.setInt(1, level);
                 preparedStatement.setString(2, name);
                 preparedStatement.setString(3, user.getId());
-                preparedStatement.setString(4, user.getGuild().getId());
             }
             else {
                 user.getJobs().remove(name);
                 preparedStatement = connection.prepareStatement(
-                        "DELETE FROM Job_User WHERE name_job = ? AND id_user = ? AND id_guild = ?;");
+                        "DELETE FROM Job_User WHERE name_job = ? AND id_user = ?;");
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, user.getId());
-                preparedStatement.setString(3, user.getGuild().getId());
             }
 
             preparedStatement.executeUpdate();
@@ -74,11 +72,10 @@ public class JobUser {
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "INSERT INTO Job_User(name_job, id_user, id_guild, level) VALUES(?, ?, ?, ?);");
+                        "INSERT INTO Job_User(name_job, id_user, level) VALUES(?, ?, ?, ?);");
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, user.getId());
-                preparedStatement.setString(3, user.getGuild().getId());
-                preparedStatement.setInt(4, level);
+                preparedStatement.setInt(3, level);
 
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
@@ -99,9 +96,8 @@ public class JobUser {
 
         try {
             PreparedStatement query = connection.prepareStatement("SELECT name_job, level"
-                    + " FROM Job_User WHERE id_user = ? AND id_guild = ?;");
+                    + " FROM Job_User WHERE id_user = ?;");
             query.setString(1, user.getId());
-            query.setString(2, user.getGuild().getId());
 
             ResultSet resultSet = query.executeQuery();
 

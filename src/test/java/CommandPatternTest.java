@@ -200,7 +200,7 @@ public class CommandPatternTest extends TestCase {
     }
 
     public void testPrefixeCommand(){
-        Command cmd = new PrefixCommand();
+        Command cmd = new PrefixeCommand();
         Pattern pattern = Pattern.compile("^" + Constants.prefixCommand + cmd.getName() + cmd.getPattern() + "$");
 
         assertFalse(pattern.matcher(Constants.prefixCommand + "prefix").find());

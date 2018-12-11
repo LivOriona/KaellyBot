@@ -67,12 +67,12 @@ public class Constants {
     /**
      * Path to the database (can be left empty)
      */
-    public final static String database_path = "";
+    public final static String database_path = "/root/Kaelly";
 
     /**
      * Path to the folder containing sounds (can be left empty)
      */
-    public final static String sound_path = "";
+    public final static String sound_path = "/root/Kaelly";
 
     /**
      * prefix used for command call.
@@ -118,9 +118,9 @@ public class Constants {
     public final static int nicknameLimit = 32;
 
     /**
-     * Character limit for prefixe discord
+     * Character limit for prefix discord
      */
-    public final static int prefixeLimit = 3;
+    public final static int prefixLimit = 3;
 
     /**
      * User or channel dedicated to receive info logs.

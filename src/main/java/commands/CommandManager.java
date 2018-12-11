@@ -35,10 +35,11 @@ public class CommandManager {
         addCommand(new JobCommand());
         addCommand(new LanguageCommand());
         addCommand(new MonsterCommand());
-        addCommand(new PrefixCommand());
+        addCommand(new PrefixeCommand());
         addCommand(new RandomCommand());
         addCommand(new ResourceCommand());
         addCommand(new RSSCommand());
+        addCommand(new ServerCommand());
         addCommand(new SetCommand());
         addCommand(new SoundCommand());
         addCommand(new TutorialCommand());

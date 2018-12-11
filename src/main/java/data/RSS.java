@@ -100,7 +100,7 @@ public class RSS implements Comparable<RSS>, Embedded {
     public EmbedObject getEmbedObject(Language lg) {
         EmbedBuilder builder = new EmbedBuilder();
 
-        builder.withAuthorName("Dofus.com");
+        builder.withAuthorName("Dofus-touch.com");
         builder.withAuthorUrl(getUrl());
 
         builder.withTitle(getTitle());

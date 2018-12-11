@@ -18,18 +18,18 @@ import java.util.regex.Matcher;
 /**
  * Created by steve on 14/07/2016.
  */
-public class PrefixCommand extends AbstractCommand {
+public class PrefixeCommand extends AbstractCommand {
 
-    private final static Logger LOG = LoggerFactory.getLogger(PrefixCommand.class);
+    private final static Logger LOG = LoggerFactory.getLogger(PrefixeCommand.class);
     private exceptions.DiscordException noEnoughRights;
-    private exceptions.DiscordException prefixeOutOfBounds;
+    private exceptions.DiscordException prefixOutOfBounds;
 
-    public PrefixCommand(){
+    public PrefixeCommand(){
         super("prefix","\\s+(.+)");
         setUsableInMP(false);
         noEnoughRights = new BasicDiscordException("exception.basic.no_enough_rights");
-        prefixeOutOfBounds = new AdvancedDiscordException("exception.advanced.prefix_out_of_bound",
-                new String[]{String.valueOf(Constants.prefixeLimit)}, new Boolean[]{false});
+        prefixOutOfBounds = new AdvancedDiscordException("exception.advanced.prefix_out_of_bound",
+                new String[]{String.valueOf(Constants.prefixLimit)}, new Boolean[]{false});
     }
 
     @Override
@@ -42,8 +42,8 @@ public class PrefixCommand extends AbstractCommand {
                 m.find();
                 String newPrefix = m.group(1).trim();
 
-                if (newPrefix.length() >= 1 && newPrefix.length() <= Constants.prefixeLimit) {
-                    Guild.getGuild(message.getGuild()).setPrefixe(newPrefix);
+                if (newPrefix.length() >= 1 && newPrefix.length() <= Constants.prefixLimit) {
+                    Guild.getGuild(message.getGuild()).setPrefix(newPrefix);
                     Message.sendText(message.getChannel(), Translator.getLabel(lg, "prefix.request.1")
                         .replace("{prefix}", getPrefixMdEscaped(message)));
                     try {
@@ -58,7 +58,7 @@ public class PrefixCommand extends AbstractCommand {
                     return true;
                 }
                 else
-                    prefixeOutOfBounds.throwException(message, this, lg);
+                    prefixOutOfBounds.throwException(message, this, lg);
             }
             else
                 noEnoughRights.throwException(message, this, lg);
@@ -67,14 +67,14 @@ public class PrefixCommand extends AbstractCommand {
     }
 
     @Override
-    public String help(Language lg, String prefixe) {
-        return "**" + prefixe + name + "** " + Translator.getLabel(lg, "prefix.help");
+    public String help(Language lg, String prefix) {
+        return "**" + prefix + name + "** " + Translator.getLabel(lg, "prefix.help");
     }
 
     @Override
-    public String helpDetailed(Language lg, String prefixe) {
-        return help(lg, prefixe)
-                + "\n" + prefixe + "`"  + name + " `*`prefixe`* : " + Translator.getLabel(lg, "prefix.help.detailed")
-                .replace("{prefixeLimit}", String.valueOf(Constants.prefixeLimit)) + "\n";
+    public String helpDetailed(Language lg, String prefix) {
+        return help(lg, prefix)
+                + "\n" + prefix + "`"  + name + " `*`prefix`* : " + Translator.getLabel(lg, "prefix.help.detailed")
+                .replace("{prefixLimit}", String.valueOf(Constants.prefixLimit)) + "\n";
     }
 }
