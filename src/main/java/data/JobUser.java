@@ -72,7 +72,7 @@ public class JobUser {
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "INSERT INTO Job_User(name_job, id_user, level) VALUES(?, ?, ?, ?);");
+                        "INSERT INTO Job_User(name_job, id_user, level) VALUES(?, ?, ?);");
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, user.getId());
                 preparedStatement.setInt(3, level);
